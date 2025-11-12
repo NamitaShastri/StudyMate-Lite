@@ -1,1 +1,1 @@
-Study Mate Live
+Study Mate Lite
