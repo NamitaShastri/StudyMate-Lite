@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyMate (Lite)</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container glass">
+    <h2>StudyMate (Lite)</h2>
+    <p class="info">Highlight any text on a webpage and choose an action below.</p>
+
+    <div class="buttons">
+      <button id="explainBtn">Explain</button>
+      <button id="hintBtn">Hint</button>
+      <button id="summarizeBtn">Summarize</button>
+      <button id="quizBtn">Quiz Me</button>
+    </div>
+
+    <div id="result" class="result">
+      Waiting for text selection...
+    </div>
+
+    <div class="footer">
+      <small>⚡ Powered by Gemini 2.5 Flash via StudyMate Proxy</small><br />
+      <!-- <small>No user API key required.</small> -->
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
