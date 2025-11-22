@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
   "name": "StudyMate (Lite)",
-  "version": "2.0",
-  "description": "An AI Study Assistant that explains, summarizes, hints, and quizzes text — powered by Gemini 2.5 Flash.",
-  "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["https://generativelanguage.googleapis.com/*", "http://localhost:3000/*"],
+  "version": "1.1",
+  "description": "An AI study buddy that explains, summarizes, gives hints, and quizzes any selected text — powered by Gemini 2.5 Flash.",
+  "permissions": ["activeTab", "scripting", "contextMenus"],
+  "host_permissions": ["https://generativelanguage.googleapis.com/*"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -15,11 +15,5 @@
   },
   "background": {
     "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ]
+  }
 }
