@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <div class="container glass">
+  <div class="container">
     <h2>StudyMate (Lite)</h2>
-    <p class="info">Highlight any text on a webpage and choose an action below.</p>
+    <label for="apiKey">Gemini API Key</label>
+    <input id="apiKey" type="password" placeholder="Paste your API key (not saved)" />
 
     <div class="buttons">
       <button id="explainBtn">Explain</button>
@@ -19,12 +20,11 @@
     </div>
 
     <div id="result" class="result">
-      Waiting for text selection...
+      Highlight text on a page, open this popup, and choose an action.
     </div>
 
     <div class="footer">
-      <small>⚡ Powered by Gemini 2.5 Flash via StudyMate Proxy</small><br />
-      <!-- <small>No user API key required.</small> -->
+      <small><b>⚡ Powered by Gemini 2.5 Flash · No data stored. </b></small>
     </div>
   </div>
 
