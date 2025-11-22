@@ -1,85 +1,88 @@
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
-  width: 360px;
-  min-height: 280px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  color: #d0b3ff;
-  font-weight: 500;
-  overflow: auto;
+  padding: 12px;
+  width: 320px;
+  color: #f6f0ff; 
+  background-color:rgb(154, 96, 208) ;    
 }
 
-.container.glass {
-  background: rgba(20, 20, 30, 0.5);
-  border-radius: 14px;
-  border: 1px solid rgba(138, 43, 226, 0.3);
-  padding: 16px 18px;
-  width: 100%;
-  box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
-  backdrop-filter: blur(12px);
+.container {
+  background-color: rgb(154, 96, 208) ;
+  size: 50cm;
 }
-
 h2 {
   margin: 0 0 10px 0;
   font-size: 20px;
   text-align: center;
-  color: #bb86fc;
+  color: #ffffff;
 }
 
-.info {
+label {
+  font-size: 15px;
+  color: #f3e7ff;
+  font-weight: 750;
   text-align: center;
-  font-size: 13px;
-  color: #c6a3ff;
-  margin-bottom: 12px;
+  
+}
+
+input {
+  width: 80%;
+  padding: 8px;
+  margin: 6px 0 10px 0;
+  border: 1px solid #9c7be8;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 6px;
+  outline: none;
+}
+
+input::placeholder {
+  color: #d9c9ff;
 }
 
 .buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 button {
   flex: 1;
-  padding: 10px 8px;
+  padding: 10px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: linear-gradient(145deg, #2e1a77, #1c0b45);
+  background: linear-gradient(135deg, #7b35cd, #50208a);
   color: #fff;
   font-weight: 600;
-  font-size: 13px;
-  transition: all 0.25s ease-in-out;
+  transition: 0.25s ease;
 }
 
 button:hover {
-  background: linear-gradient(145deg, #3c22a0, #241060);
+  background: linear-gradient(135deg, #9b54ff, #6a2dcc);
   transform: translateY(-2px);
-  box-shadow: 0 0 8px rgba(138, 43, 226, 0.6);
+  box-shadow: 0 0 6px rgba(190, 140, 255, 0.6);
 }
 
 .result {
-  border-radius: 10px;
-  background: rgba(15, 15, 25, 0.6);
-  border: 1px solid rgba(138, 43, 226, 0.4);
+  min-height: 120px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 10px;
-  font-size: 13.5px;
+  font-size: 13px;
   white-space: pre-wrap;
-  color: #e5dbff;
-  transition: all 0.3s ease;
-  overflow: hidden;
+  color: #f4eaff;
+  backdrop-filter: blur(8px);
+  overflow-y: auto;
 }
 
 .footer {
   margin-top: 10px;
   text-align: center;
-  color: #c6a3ff;
+  color: #e3d6ff;
   font-size: 11px;
-  line-height: 1.4;
+  font-weight: 800;
 }
