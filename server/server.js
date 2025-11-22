@@ -1,4 +1,3 @@
-// server.js — simple proxy to Gemini 2.5 Flash
 require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
@@ -9,23 +8,23 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 app.use(helmet());
-app.use(express.json({ limit: '20kb' })); // small requests
+app.use(express.json({ limit: '20kb' })); 
 app.use(cors({
-  origin: true, // for restricted testing, replace with ['https://yourdomain.com'] 
+  origin: true, 
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Proxy-Secret']
 }));
 app.use(morgan('tiny'));
 
-// Basic rate limiter — adjust for your needs
+
 const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 30, // max requests per IP per minute
+  windowMs: 60 * 1000, 
+  max: 30, 
   standardHeaders: true,
   legacyHeaders: false
 });
 app.use(limiter);
 
-// environment checks
+
 const PORT = process.env.PORT || 3000;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const PROXY_SECRET = process.env.PROXY_SECRET;
@@ -39,7 +38,6 @@ if (!PROXY_SECRET) {
   process.exit(1);
 }
 
-// Helper to call Gemini
 async function callGemini(prompt) {
   const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
   const body = {
@@ -54,10 +52,10 @@ async function callGemini(prompt) {
   return resp.data;
 }
 
-// Proxy endpoint
+
 app.post('/api/generate', async (req, res) => {
   try {
-    // basic auth via custom header (X-Proxy-Secret) — change to stronger auth for public use
+    
     const clientSecret = req.header('X-Proxy-Secret') || '';
     if (!clientSecret || clientSecret !== PROXY_SECRET) {
       return res.status(401).json({ error: 'Unauthorized' });
@@ -68,10 +66,10 @@ app.post('/api/generate', async (req, res) => {
       return res.status(400).json({ error: 'Invalid prompt' });
     }
 
-    // call Gemini
+   
     const data = await callGemini(prompt);
 
-    // return the raw Gemini payload (or a cleaned portion)
+    
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
     return res.json({ text, raw: data });
   } catch (err) {
