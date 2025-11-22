@@ -33,12 +33,6 @@ A clean and lightweight Chrome extension that works as an AI-powered study compa
 * Click **Load Unpacked**
 * Select the project folder
 
-### Setup (For Developers)
-
-* Clone this repository
-* Add your Gemini API key to `manifest.json`
-* Load the project as an unpacked extension in Chrome
-
 ---
 
 ## Folder Structure
