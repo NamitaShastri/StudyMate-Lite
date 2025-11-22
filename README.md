@@ -51,10 +51,3 @@ studyMate-lite/
 ├── manifest.json
 └── icons/
 ```
-
-
----
-
-## License
-
-* This project is licensed under the MIT License
