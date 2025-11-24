@@ -1,73 +1,69 @@
-const apiKeyInput = document.getElementById("apiKey");
-const resultEl = document.getElementById("result");
+const PROXY_URL = "http://localhost:3000/api/generate";
+const PROXY_SECRET = ""; //Enter your proxy_scret same as the written in .env file
 
-const prompts = {
-  explain: (text) => `Explain this clearly and simply for a student:\n\n${text}`,
-  hint: (text) => `Give a small conceptual hint about this, without giving the full answer:\n\n${text}`,
-  summarize: (text) => `Summarize this content in 3–4 short bullet points:\n\n${text}`,
-  quiz: (text) => `Create short multiple-choice questions (4 options each) from this content and include correct answers at the end of all the questions:\n\n${text}`
-};
+
+function clean(text) {
+  return text
+    .replace(/\*\*/g, "")
+    .replace(/\*/g, "")
+    .replace(/^- /gm, "")
+    .trim();
+}
 
 async function getSelectedText() {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
   const [{ result }] = await chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    func: () => window.getSelection().toString(),
+    func: () => window.getSelection().toString()
   });
+
   return result.trim();
 }
 
-async function callGemini(prompt, apiKey) {
-  const endpoint =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
-
-  const response = await fetch(`${endpoint}?key=${apiKey}`, {
+async function callAI(prompt) {
+  const res = await fetch(PROXY_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-    }),
+    headers: {
+      "Content-Type": "application/json",
+      "X-Proxy-Secret": PROXY_SECRET
+    },
+    body: JSON.stringify({ prompt })
   });
 
-  if (!response.ok) {
-    const err = await response.text();
-    throw new Error(`Gemini API error: ${err}`);
-  }
+  if (!res.ok) throw new Error("Server Error");
 
-  const data = await response.json();
-  const output = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  return output || "No response from Gemini.";
+  const data = await res.json();
+  return clean(data.text);
 }
 
-async function runAction(type) {
-  resultEl.textContent = "Fetching selected text...";
-  const text = await getSelectedText();
+async function run(type) {
+  const result = document.getElementById("result");
+  const selected = await getSelectedText();
 
-  if (!text) {
-    resultEl.textContent = "⚠️ No text selected. Highlight something first!";
+  if (!selected) {
+    result.textContent = "Highlight some text first!";
     return;
   }
 
-  const apiKey = apiKeyInput.value.trim();
-  if (!apiKey) {
-    resultEl.textContent = "⚠️ Paste your Gemini API key above (not saved).";
-    return;
-  }
+  result.textContent = "Thinking…";
 
-  resultEl.textContent = "⏳ Thinking...";
+  const prompts = {
+    explain: `Explain simply:\n${selected}`,
+    hint: `Give a small hint:\n${selected}`,
+    summarize: `Summarize briefly:\n${selected}`,
+    quiz: `Create 2 questions:\n${selected}`
+  };
 
   try {
-    const prompt = prompts[type](text);
-    const reply = await callGemini(prompt, apiKey);
-    resultEl.textContent = reply;
-  } catch (err) {
-    console.error(err);
-    resultEl.textContent = "❌ " + err.message;
+    const reply = await callAI(prompts[type]);
+    result.textContent = reply;
+  } catch (e) {
+    result.textContent = " Failed to fetch";
   }
 }
 
-document.getElementById("explainBtn").addEventListener("click", () => runAction("explain"));
-document.getElementById("hintBtn").addEventListener("click", () => runAction("hint"));
-document.getElementById("summarizeBtn").addEventListener("click", () => runAction("summarize"));
-document.getElementById("quizBtn").addEventListener("click", () => runAction("quiz"));
-
+document.getElementById("explainBtn").onclick = () => run("explain");
+document.getElementById("hintBtn").onclick = () => run("hint");
+document.getElementById("summarizeBtn").onclick = () => run("summarize");
+document.getElementById("quizBtn").onclick = () => run("quiz");
