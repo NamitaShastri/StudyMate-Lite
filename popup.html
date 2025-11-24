@@ -1,33 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudyMate (Lite)</title>
-  <link rel="stylesheet" href="popup.css" />
+  <meta charset="UTF-8">
+  <title>StudyMate Lite</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
-  <div class="container">
-    <h2>StudyMate (Lite)</h2>
-    <label for="apiKey">Gemini API Key</label>
-    <input id="apiKey" type="password" placeholder="Paste your API key (not saved)" />
 
-    <div class="buttons">
-      <button id="explainBtn">Explain</button>
-      <button id="hintBtn">Hint</button>
-      <button id="summarizeBtn">Summarize</button>
-      <button id="quizBtn">Quiz Me</button>
-    </div>
+  <h2>StudyMate (Lite)</h2>
 
-    <div id="result" class="result">
-      Highlight text on a page, open this popup, and choose an action.
-    </div>
+  <div class="buttons">
+    <button id="explainBtn">Explain</button>
+    <button id="hintBtn">Hint</button>
+    <button id="summarizeBtn">Summarize</button>
+    <button id="quizBtn">Quiz Me</button>
+  </div>
 
-    <div class="footer">
-      <small><b>⚡ Powered by Gemini 2.5 Flash · No data stored. </b></small>
-    </div>
+  <div id="result" class="result">Waiting for text...</div>
+
+  <div class="footer">
+    Powered by Gemini 2.5 Flash
   </div>
 
   <script src="popup.js"></script>
 </body>
+
 </html>
