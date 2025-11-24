@@ -1,11 +1,11 @@
-StudyMate Lite – Chrome Extension
+# StudyMate Lite – Chrome Extension
 
 StudyMate Lite is a simple Chrome Extension that helps students stay organized and focused.
 This project also includes a small Node.js backend server used for handling API requests securely.
 
 This guide explains how anyone can set up and use the project.
 
-1. Project Contents
+## 1. Project Contents
 
 This project contains:
 
@@ -19,7 +19,7 @@ A package.json file listing the server dependencies
 
 Icons and other assets
 
-2. Downloading the Project
+## 2. Downloading the Project
 
 You can download the project by either cloning it or downloading it as a ZIP.
 
@@ -28,7 +28,7 @@ git clone <repository-link>
 
 After downloading, open the folder in any code editor such as VS Code.
 
-3. Setting up the .env file
+## 3. Setting up the .env file
 
 Inside the project, you will see a file named .env.example.
 This file shows which values you need to provide for the server.
@@ -47,9 +47,7 @@ API_KEY is your private API key (your Gemini API key).
 
 PORT is the port on which the backend server will run.
 
-Do not upload the .env file to GitHub.
-
-4. Installing Backend Dependencies
+## 4. Installing Backend Dependencies
 
 Open a terminal inside the project folder and run:
 
@@ -57,7 +55,7 @@ npm install
 
 This will install all required Node.js packages.
 
-5. Running the Backend Server
+## 5. Running the Backend Server
 
 Start the backend server by running:
 
@@ -65,7 +63,7 @@ node server.js
 
 The server will start on the port you set in the .env file (default is 5000).
 
-6. Loading the Chrome Extension
+## 6. Loading the Chrome Extension
 
 To use the extension in Google Chrome:
 
